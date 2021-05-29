@@ -1,3 +1,99 @@
+  # React Jobly
+
+  ## About
+
+  This the React front end for the Jobly back end.
+
+  ## Stack
+  - React
+    - React Testing Library
+    - React Router Dom
+  - Axios
+
+  ## Component Hierarchy
+  - ### App ---- General page wrapper
+    
+    context = currentUser, appliedJobs
+
+    - ### NavBar --------- Navigation bar on top of the page
+
+        useContext = currentUser
+
+    - ### Home ---------- Home Route /
+
+        useContext = currentUser
+      
+    - ### LoginForm ---------- Login Route /login
+
+        state = formData
+        
+        props = login()
+
+    - ### RegisterForm --------- Sign Up Route /signup
+
+        state = formData
+        
+        props = signUp()
+
+    - ### Companies ------ Companies Route /companies
+
+      state = companies
+
+      - ### CompanySearchForm ---- Search Form 
+
+        state = formData
+
+        props = search()
+
+      - ### CompanyList --- List of Companies
+
+        props = companies
+
+        - ### CompanyListItem --- showing simple info about a company and link to company detail route
+
+        props = company
+
+    - ### Jobs ----------- Jobs Route /jobs
+
+        state = jobs
+
+      - ### JobSearchForm ---- Search Form Same as Companies Route
+
+        state = formData
+
+        props = search()
+
+      - ### JobList
+
+        props = jobs , showCompany
+
+        - ### JobListItem
+
+            props = job , showCompany
+
+            useContext = appliedJobs
+
+    - ### Company -------- Company Detail Route /companies/:companyHandle
+
+        state = company , jobs
+
+      - ### JobList
+        
+        props = jobs , showCompany
+
+        - ### JobListItem
+
+            props = job , showCompany
+
+            useContext = appliedJobs
+
+    - ### ProfileForm ---- Profile Route /profile
+
+        state = formData , updateProfile
+
+        useContext = currentUser
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

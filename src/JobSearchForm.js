@@ -8,7 +8,7 @@ const JobSearchForm = ({ searchParams, setSearchParams }) => {
     );
 
     return (
-        <div className="container p-2">
+        <div className="container p-1">
             <form onSubmit={handleSubmit}>
                 <div className="row">
                     <div className="col-3">

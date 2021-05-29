@@ -98,11 +98,11 @@ class JoblyApi {
       delete params.name;
     }
 
-    if (!params.minEmployees) {
+    if (!params.minEmployees || parseInt(params.minEmployees) < 0) {
       delete params.minEmployees
     }
 
-    if (!params.maxEmployees) {
+    if (!params.maxEmployees || parseInt(params.maxEmployees) < 0) {
       delete params.maxEmployees
     }
 
@@ -141,7 +141,7 @@ class JoblyApi {
       delete params.title;
     }
 
-    if (!params.minSalary) {
+    if (!params.minSalary || parseInt(params.minSalary) <= 0) {
       delete params.minSalary
     }
 

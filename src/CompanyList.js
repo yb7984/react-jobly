@@ -25,13 +25,17 @@ const CompanyList = ({ searchParams = {} }) => {
     }
 
 
-    return (
-        <div>
-            {companies.map(company => (
-                <CompanyListItem key={company.handle} company={company} />
-            ))}
-        </div>
-    );
+    if (companies.length > 0) {
+        return (
+            <div>
+                {companies.map(company => (
+                    <CompanyListItem key={company.handle} company={company} />
+                ))}
+            </div>
+        );
+    }
+
+    return (<div className="alert alert-danger">No company found!</div>);
 }
 
 export default CompanyList;

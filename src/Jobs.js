@@ -19,7 +19,7 @@ const Jobs = () => {
     });
 
     return (
-        <div className="container">
+        <div className="container-xl">
             <JobSearchForm searchParams={searchParams} setSearchParams={setSearchParams}></JobSearchForm>
             <JobList searchParams={searchParams}></JobList>
         </div>

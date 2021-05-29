@@ -17,7 +17,7 @@ const Companies = () => {
         maxEmployees: ""
     });
     return (
-        <div className="container">
+        <div className="container-xl">
             <CompanySearchForm searchParams={searchParams} setSearchParams={setSearchParams}></CompanySearchForm>
             <CompanyList searchParams={searchParams} ></CompanyList>
         </div>

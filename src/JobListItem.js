@@ -29,9 +29,9 @@ const JobListItem = ({ job, showCompany = true }) => {
                 <div className="card-text">
                     {showCompany ? (<div><Link to={`/companies/${job.companyHandle}`}>{job.companyName}</Link></div>) : ""}
                     <div className="row">
-                        <div className="col-8 col-md-5">Salary:{job.salary}</div>
-                        <div className="col-8 col-md-5">Equity:{job.equity}</div>
-                        <div className="col-4 col-md-2">
+                        <div className="col-12 col-md-5">Salary:{job.salary}</div>
+                        <div className="col-12 col-md-5">Equity:{job.equity}</div>
+                        <div className="col-12 col-md-2 text-center">
                             <button className="btn btn-success btn-lg" onClick={handleApply} disabled={isApplied}>
                                 {isApplied ? "Applied" : "Apply"}
                             </button></div>

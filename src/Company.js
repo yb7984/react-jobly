@@ -3,7 +3,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import JoblyApi from "./api";
 import Loading from "./Loading";
-import JobListItem from './JobListItem';
+import JobList from "./JobList";
 
 const Company = () => {
     const { checkAuth } = useAuth();
@@ -30,22 +30,24 @@ const Company = () => {
 
     if (company) {
         return (
-            <div className="container">
-                <div className="display-4">{company.name}</div>
-                <div className="d-flex">
-                    <div>
-
-                        {
-                            company.logoUrl ?
-                                <img className="float-right" src={company.logoUrl} alt={company.name} /> :
-                                ""
-                        }
-                        {company.description}
+            <div className="container-xl">
+                <div className="card m-2 border-0">
+                    <div className="card-body">
+                        <h5 className="card-title">{company.name}</h5>
+                        <div className="card-text">
+                            <div className="position-relative">
+                                {
+                                    company.logoUrl ?
+                                        <img className="float-right" src={company.logoUrl} alt={company.name} /> :
+                                        ""
+                                }
+                                <div>Employees: {company.numEmployees}</div>
+                                <div>{company.description}</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div>
-                    {company.jobs.map(job => (<JobListItem key={job.id} job={job} showCompany={false} />))}
-                </div>
+                <JobList listJobs={company.jobs} />
             </div>
         );
     }
