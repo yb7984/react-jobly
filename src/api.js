@@ -217,7 +217,6 @@ class JoblyApi {
       JoblyApi.token = res.token;
       return true;
     } else {
-      console.log(res);
       return res;
     }
   }

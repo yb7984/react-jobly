@@ -4,7 +4,10 @@ import useAuth from "./hooks/useAuth";
 import { Redirect } from 'react-router-dom';
 import { useState } from 'react';
 
-
+/**
+ * /companies route showing list of companies with search
+ * @returns 
+ */
 const Companies = () => {
     const { checkAuth } = useAuth();
     const [searchParams, setSearchParams] = useState({
@@ -13,7 +16,6 @@ const Companies = () => {
         maxEmployees: ""
     });
     if (!checkAuth()) {
-        console.log("redirect")
         return (<Redirect to="/login" />);
     }
     return (

@@ -4,6 +4,11 @@ import useAuth from "./hooks/useAuth";
 import { Redirect } from 'react-router-dom';
 import { useState } from 'react';
 
+
+/**
+ * /jobs route showing list of jobs with search
+ * @returns 
+ */
 const Jobs = () => {
     const { checkAuth } = useAuth();
     const [searchParams, setSearchParams] = useState({

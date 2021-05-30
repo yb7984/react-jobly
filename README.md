@@ -9,45 +9,67 @@
     - React Testing Library
     - React Router Dom
   - Axios
+  - Bootstrap
+  - Fontawesome
+
+  ## Hooks
+  - ### useAuth ----- hook with loginUser and function to check auth information
+  - ### useFields ----- hook to handle form inputs
+  - ### useFormError ---- hook to handle error message return from ajax request
+  - ### useSearchFields ----- hook to handle live search inputs
 
   ## Component Hierarchy
   - ### App ---- General page wrapper
     
-    context = currentUser, appliedJobs
+    state = loginUser
 
-    - ### NavBar --------- Navigation bar on top of the page
+    context = loginUser
 
-        useContext = currentUser
+    - ### NavigationBar --------- Navigation bar on top of the page
+
+        useContext = loginUser
+
+        props = logout
 
     - ### Home ---------- Home Route /
 
-        useContext = currentUser
+        useContext = loginUser
       
     - ### LoginForm ---------- Login Route /login
 
-        state = formData
+        state = formData , errorMsg , isLoading
         
-        props = login()
+        props = login
 
-    - ### RegisterForm --------- Sign Up Route /signup
+        hooks = useFields
 
-        state = formData
+    - ### SignUpForm --------- Sign Up Route /signup
+
+        state = formData , errorMsg , isLoading
         
         props = signUp()
 
+        hooks = useFields
+
     - ### Companies ------ Companies Route /companies
 
-      state = companies
+      state = searchParams 
+      
+      hooks = useAuth
 
       - ### CompanySearchForm ---- Search Form 
-
+  
         state = formData
 
-        props = search()
+        props = searchParams , setSearchParams
+
+        hooks = useSearchFields
 
       - ### CompanyList --- List of Companies
 
-        props = companies
+        state = isLoading , companies
+
+        props = searchParams , setSearchParams
 
         - ### CompanyListItem --- showing simple info about a company and link to company detail route
 
@@ -55,43 +77,59 @@
 
     - ### Jobs ----------- Jobs Route /jobs
 
-        state = jobs
+      state = searchParams 
+      
+      hooks = useAuth
 
       - ### JobSearchForm ---- Search Form Same as Companies Route
 
         state = formData
 
-        props = search()
+        props = searchParams , setSearchParams
 
-      - ### JobList
+        hooks = useSearchFields
 
-        props = jobs , showCompany
+      - ### JobList  ------- List all jobs 
 
-        - ### JobListItem
+        state = isLoading , jobs
+
+        props = searchParams , listJobs
+
+        - ### JobListItem ----- job list item
 
             props = job , showCompany
 
-            useContext = appliedJobs
+            useContext = loginUser , setLoginUser
 
     - ### Company -------- Company Detail Route /companies/:companyHandle
 
-        state = company , jobs
+      state = company
 
-      - ### JobList
+      hooks = useAuth
+
+      params = handle
+
+      - ### JobList ------- list all jobs of the company, the same one as /jobs route
         
-        props = jobs , showCompany
+        state = isLoading , jobs
 
-        - ### JobListItem
+        props = searchParams , listJobs
+
+        - ### JobListItem ---- jobs list item
 
             props = job , showCompany
 
-            useContext = appliedJobs
+            useContext = loginUser , setLoginUser
 
     - ### ProfileForm ---- Profile Route /profile
 
-        state = formData , updateProfile
+        state = formData , alertMsg , errorMsg , isLoading
 
-        useContext = currentUser
+        useContext = loginUser , setLoginUser
+
+        hooks = useAuth , useFormError , useFields
+
+    - ### Loading ---- Simple component to show when loading data.
 
 
 # Getting Started with Create React App

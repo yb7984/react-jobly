@@ -4,6 +4,12 @@ import JoblyApi from './api';
 import Loading from './Loading';
 
 
+/**
+ * Company List Component
+ * Fitler companies by searchParams
+ * @param {*} props {searchParams} , seachParams can contain {name , minEmployees , maxEmployees}
+ * @returns 
+ */
 const CompanyList = ({ searchParams = {} }) => {
 
     const [isLoading, setIsLoading] = useState(true);
@@ -14,7 +20,7 @@ const CompanyList = ({ searchParams = {} }) => {
             setIsLoading(true);
 
             setCompanies(await JoblyApi.getCompanies(searchParams));
-            
+
             setIsLoading(false);
         }
 

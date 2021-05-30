@@ -3,7 +3,13 @@ import { Navbar, Container, Nav } from 'react-bootstrap';
 import { useContext } from 'react';
 import UserContext from './context/userContext';
 
-
+/**
+ * Navigation bar on top
+ * @param {*} props contains {
+ * logout : function to handle user log out
+ * } 
+ * @returns 
+ */
 const NavigationBar = ({ logout }) => {
 
     const ACTIVE_STYLES = {

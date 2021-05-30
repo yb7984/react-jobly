@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 import UserContext from "./context/userContext";
 import './Home.css';
 
+/**
+ * / route, home page component
+ * @returns 
+ */
 const Home = () => {
     let userHtml = '';
 

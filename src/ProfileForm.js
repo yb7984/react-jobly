@@ -9,8 +9,12 @@ import JoblyApi from './api';
 import { Redirect } from 'react-router-dom';
 import useAuth from './hooks/useAuth';
 
+/**
+ * /profile route, showing a profile update form
+ * @returns 
+ */
 const ProfileForm = () => {
-    const { checkAuth } = useAuth();
+    const { checkAuth } = useAuth("right-user");
 
     const { loginUser, setLoginUser } = useContext(UserContext);
     const [errorMsg, setErrorMsg] = useFormError();

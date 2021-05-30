@@ -1,5 +1,10 @@
 import { Link } from 'react-router-dom';
 
+/**
+ * Company List Item Component
+ * @param {*} props contains {company} 
+ * @returns 
+ */
 const CompanyListItem = ({ company = {} }) => {
     return (
         <div className="card m-2">

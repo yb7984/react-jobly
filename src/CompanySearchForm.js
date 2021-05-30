@@ -1,5 +1,11 @@
 import useSearchFields from "./hooks/useSearchFields";
 
+/**
+ * Company Search Form Component
+ * handling live search for companies
+ * @param {*} props contains {searchParams , setSearchParams} 
+ * @returns 
+ */
 const CompanySearchForm = ({ searchParams, setSearchParams }) => {
 
     const [formData, handleSearchChange, handleSubmit] = useSearchFields(

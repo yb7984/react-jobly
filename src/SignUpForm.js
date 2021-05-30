@@ -6,6 +6,13 @@ import FormInput from './FormInput';
 import './SignUpForm.css';
 import useFormError from './hooks/useFormError';
 
+/**
+ * /signup route, showing a sign up form.
+ * @param {*} props contains {
+ * signup : function for handling user sign up.
+ * } 
+ * @returns 
+ */
 const SignUpForm = ({ signup }) => {
     const [errorMsg, setErrorMsg] = useFormError();
     const [formData, handleChange] = useFields({

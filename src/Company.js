@@ -5,6 +5,12 @@ import JoblyApi from "./api";
 import Loading from "./Loading";
 import JobList from "./JobList";
 
+
+/**
+ * /company route, company detail page, 
+ * showing company detail and jobs posted by this company
+ * @returns 
+ */
 const Company = () => {
     const { checkAuth } = useAuth();
     const { handle } = useParams();

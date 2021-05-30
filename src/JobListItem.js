@@ -3,6 +3,14 @@ import { Link } from 'react-router-dom';
 import JoblyApi from './api';
 import UserContext from './context/userContext';
 
+
+/**
+ * Job List Item Component
+ * @param {*} props contains {
+ * job : job information 
+ * showCompany : default value is true. toggle for showing company information or not} 
+ * @returns 
+ */
 const JobListItem = ({ job, showCompany = true }) => {
     const { loginUser, setLoginUser } = useContext(UserContext);
 

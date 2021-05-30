@@ -5,6 +5,13 @@ import './LoginForm.css';
 import Loading from './Loading';
 import FormInput from './FormInput';
 
+/**
+ * /login route , component to show a login form 
+ * @param {*} props contains {
+ * login : function to handle user login
+ * }
+ * @returns 
+ */
 const LoginForm = ({ login }) => {
     const [errorMsg, setErrorMsg] = useState('');
     const [formData, handleChange] = useFields({

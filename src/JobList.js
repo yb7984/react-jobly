@@ -3,7 +3,16 @@ import { useEffect, useState } from 'react';
 import JoblyApi from './api';
 import Loading from './Loading';
 
-
+/**
+ * Job List Component
+ * Fitler jobs by searchParams if listJobs is null
+ * List jobs in listJobs if listJobs is not null
+ * @param {*} props {
+ * searchParams : seachParams can contain {title , minSalary , hasEquity}
+ * listJobs : default value is null. 
+ * }
+ * @returns 
+ */
 const JobList = ({ searchParams = {}, listJobs = null }) => {
 
     const [isLoading, setIsLoading] = useState(!listJobs);

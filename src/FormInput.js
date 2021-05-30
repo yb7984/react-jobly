@@ -1,3 +1,20 @@
+
+/**
+ * Input Form Item Component
+ * @param {*} props contains {
+ * name field name, use for name and id for the input
+ * value value of the input
+ * handleChange function for handling value change
+ * title Label text for the input
+ * placeholder placeholder text for the input
+ * type: default value text, can be email, number, date , password , color
+ * text: help information for this field
+ * minLength: minium length required
+ * required: default value is false
+ * readOnly: default value is false 
+ * } 
+ * @returns 
+ */
 const FormInput = ({
     name,
     value,

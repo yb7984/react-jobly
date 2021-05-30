@@ -1,5 +1,12 @@
 import useSearchFields from "./hooks/useSearchFields";
 
+
+/**
+ * Job Search Form Component
+ * handling live search for jobs
+ * @param {*} props contains {searchParams , setSearchParams} 
+ * @returns 
+ */
 const JobSearchForm = ({ searchParams, setSearchParams }) => {
 
     const [formData, handleSearchChange, handleSubmit] = useSearchFields(

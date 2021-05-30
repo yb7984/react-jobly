@@ -21,13 +21,17 @@ import Loading from './Loading';
 //add the using fontawesome
 library.add(faSpinner);
 
+/**
+ * Here is where the app starts
+ * @returns 
+ */
 function App() {
   const [loginUser, setLoginUser] = useState(null);
   const history = useHistory();
 
   let isLoading = !loginUser && JoblyApi.token;
 
-  //load login user information
+  //load login user information if available
   const setUser = async () => {
     if (isLoading && !loginUser && JoblyApi.token) {
       const user = await JoblyApi.getCurrentUser();
@@ -45,6 +49,7 @@ function App() {
   setUser();
 
 
+  // function for user login
   const login = async (username, password) => {
 
     const result = await JoblyApi.login(username, password);
@@ -58,6 +63,7 @@ function App() {
     return false;
   }
 
+  //function for user sign up
   const signup = async (user) => {
 
 
@@ -72,6 +78,7 @@ function App() {
     return false;
   }
 
+  // function for user logout
   const logout = () => {
     JoblyApi.token = "";
     setLoginUser(null);
