@@ -1,5 +1,5 @@
 import useAuth from "./hooks/useAuth";
-import { useHistory, useParams } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import JoblyApi from "./api";
 import Loading from "./Loading";
@@ -7,12 +7,6 @@ import JobList from "./JobList";
 
 const Company = () => {
     const { checkAuth } = useAuth();
-    const history = useHistory();
-    if (!checkAuth) {
-        history.push('/login');
-    }
-
-
     const { handle } = useParams();
     const [company, setCompany] = useState(null);
 
@@ -27,6 +21,12 @@ const Company = () => {
 
         getCompany();
     }, [handle]);
+
+
+    if (!checkAuth) {
+        return (<Redirect to="/login" />);
+    }
+
 
     if (company) {
         return (

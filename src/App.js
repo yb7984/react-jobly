@@ -23,14 +23,13 @@ library.add(faSpinner);
 
 function App() {
   const [loginUser, setLoginUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
   const history = useHistory();
 
+  let isLoading = !loginUser && JoblyApi.token;
 
   //load login user information
   const setUser = async () => {
-    if (isLoading) {
-
+    if (isLoading && !loginUser && JoblyApi.token) {
       const user = await JoblyApi.getCurrentUser();
 
       if (user) {
@@ -39,7 +38,7 @@ function App() {
         setLoginUser(null);
       }
 
-      setIsLoading(false);
+      isLoading = false;
     }
   }
 

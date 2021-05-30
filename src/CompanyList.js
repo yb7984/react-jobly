@@ -14,6 +14,7 @@ const CompanyList = ({ searchParams = {} }) => {
             setIsLoading(true);
 
             setCompanies(await JoblyApi.getCompanies(searchParams));
+            
             setIsLoading(false);
         }
 

@@ -6,8 +6,12 @@ import './ProfileForm.css';
 import useFormError from './hooks/useFormError';
 import UserContext from './context/userContext';
 import JoblyApi from './api';
+import { Redirect } from 'react-router-dom';
+import useAuth from './hooks/useAuth';
 
 const ProfileForm = () => {
+    const { checkAuth } = useAuth();
+
     const { loginUser, setLoginUser } = useContext(UserContext);
     const [errorMsg, setErrorMsg] = useFormError();
     const [alertMsg, setAlertMsg] = useState('');
@@ -18,6 +22,11 @@ const ProfileForm = () => {
         email: loginUser.email
     });
     const [isLoading, setIsLoading] = useState(false);
+
+
+    if (!checkAuth) {
+        return (<Redirect to="/login" />);
+    }
 
     const handleSubmit = async (e) => {
         setIsLoading(true);

@@ -59,8 +59,8 @@ class JoblyApi {
   /**
    * Get Current User Information
    * 
-   * Returns { username, firstName, lastName, isAdmin, jobs }
-   *   where jobs is { id, title, companyHandle, companyName, state }
+   * Returns { username, firstName, lastName, isAdmin, applications }
+   *   where applications is [jobId , ...]
    */
   static async getCurrentUser() {
 
@@ -71,6 +71,7 @@ class JoblyApi {
     try {
       const { username } = jwt.decode(JoblyApi.token);
 
+      console.log(username);
       if (username) {
         return await JoblyApi.getUser(username);
       }
@@ -152,8 +153,8 @@ class JoblyApi {
 
   /** GET user infomation
    *
-   * Returns { username, firstName, lastName, isAdmin, jobs }
-   *   where jobs is { id, title, companyHandle, companyName, state }
+   * Returns { username, firstName, lastName, isAdmin, applications }
+   *   where applications is [jobId , ...]
    **/
   static async getUser(username) {
     let res = await this.request(`users/${username}`);

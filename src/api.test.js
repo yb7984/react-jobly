@@ -1,15 +1,14 @@
 import { localStorageMock, testToken } from './_testCommon';
 import JoblyApi from './api';
-import axios from 'axios';
+import axiosMock from 'axios';
 
 window.localStorage = localStorageMock;
-jest.mock('axios');
 
-beforeEach(()=>{
+beforeEach(() => {
     // JoblyApi.token = null;
 });
 
-afterEach(()=>{
+afterEach(() => {
     JoblyApi.token = null;
 });
 
@@ -17,7 +16,7 @@ describe("token", function () {
     it('works get token and getCurrentUser', async () => {
 
         expect(localStorage.getItem("_token")).toEqual(null);
-        expect(JoblyApi.token).toEqual(null);
+        expect(JoblyApi.token).toEqual("");
 
         let user = await JoblyApi.getCurrentUser();
         expect(user).toEqual(null);
@@ -32,15 +31,25 @@ describe("token", function () {
             status: 200,
             data: {
                 user: {
-                    username: "testuser"
+                    username: "testuser",
+                    firstName: "test_f",
+                    lastName: "test_l",
+                    isAdmin: true,
+                    applications: []
                 }
             },
         };
 
-        axios.mockImplementationOnce(() => Promise.resolve(data));
+        axiosMock.mockResolvedValueOnce(data);
 
         user = await JoblyApi.getCurrentUser();
         expect(user).not.toEqual(null);
-        expect(user.username).toEqual("testuser");
+        expect(user).toEqual({
+            username: "testuser",
+            firstName: "test_f",
+            lastName: "test_l",
+            isAdmin: true,
+            applications: []
+        });
     });
 });

@@ -1,21 +1,20 @@
 import CompanySearchForm from './CompanySearchForm';
 import CompanyList from './CompanyList';
 import useAuth from "./hooks/useAuth";
-import { useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { useState } from 'react';
 
 
 const Companies = () => {
     const { checkAuth } = useAuth();
-    const history = useHistory();
-    if (!checkAuth) {
-        history.push('/login');
-    }
     const [searchParams, setSearchParams] = useState({
         name: "",
         minEmployees: "",
         maxEmployees: ""
     });
+    if (!checkAuth) {
+        return (<Redirect to="/login" />);
+    }
     return (
         <div className="container-xl">
             <CompanySearchForm searchParams={searchParams} setSearchParams={setSearchParams}></CompanySearchForm>
