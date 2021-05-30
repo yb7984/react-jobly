@@ -2,12 +2,14 @@ import { fireEvent, render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import App from './App';
 import axiosMock from 'axios';
-import { localStorageMock, testToken } from './_testCommon';
+import { localStorageMock, testCompany, testToken, testUser, testJob } from './_testCommon';
 import JoblyApi from './api';
 
 console.error = jest.fn((msg) => {
   console.log(msg);
 });
+
+window.localStorage = localStorageMock;
 
 beforeEach(() => {
 });
@@ -25,7 +27,49 @@ test('renders page without login', () => {
 });
 
 
-test('match a snapshot, render with login', async () => {
+test('test login', async () => {
+  JoblyApi.token = "";
+
+  axiosMock.mockImplementation(({ url }) => {
+    if (url.indexOf("/token") !== -1) {
+      return {
+        status: 200,
+        data: {
+          token: testToken
+        }
+      };
+    }
+
+    if (url.indexOf("/users") !== -1) {
+      return {
+        status: 200,
+        data: {
+          user: { ...testUser }
+        }
+      };
+    }
+
+  });
+  const { asFragment, findByText, getByText, getByPlaceholderText } = render(<MemoryRouter initialEntries={['/login']}><App /></MemoryRouter>);
+
+  expect(asFragment()).toMatchSnapshot();
+
+  expect(getByPlaceholderText("Enter username")).toBeInTheDocument();
+
+  fireEvent.change(getByPlaceholderText("Enter username"), { target: { value: "test" } });
+  fireEvent.change(getByPlaceholderText("Enter password"), { target: { value: "password" } });
+
+  //login
+  fireEvent.click(getByText("Login"));
+
+  await findByText("Companies");
+
+  expect(getByText("Welcome back", { exact: false })).toBeInTheDocument();
+
+});
+
+
+test('/companies /jobs match a snapshot, works with login', async () => {
 
   JoblyApi.token = testToken;
 
@@ -33,11 +77,7 @@ test('match a snapshot, render with login', async () => {
     status: 200,
     data: {
       user: {
-        username: "testuser",
-        firstName: "test_f",
-        lastName: "test_l",
-        isAdmin: true,
-        applications: []
+        ...testUser
       }
     },
   };
@@ -67,10 +107,7 @@ test('match a snapshot, render with login', async () => {
     data: {
       companies: [
         {
-          handle: "test",
-          name: "Test Company",
-          numEmployees: 200,
-          description: "test test"
+          ...testCompany
         }
       ]
     }
@@ -89,12 +126,7 @@ test('match a snapshot, render with login', async () => {
     data: {
       jobs: [
         {
-          id: "test",
-          title: "Test Jobs",
-          salary: 200000,
-          equity: 70,
-          companyHandle: "testcom",
-          companyName: "Test Company"
+          ...testJob
         }
       ]
     }
@@ -105,5 +137,7 @@ test('match a snapshot, render with login', async () => {
 
   await findByPlaceholderText('Search jobs here');
 
-  expect(getByText("Test Company")).toBeInTheDocument();
+  expect(getByText("Test Jobs")).toBeInTheDocument();
 });
+
+

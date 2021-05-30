@@ -71,7 +71,6 @@ class JoblyApi {
     try {
       const { username } = jwt.decode(JoblyApi.token);
 
-      console.log(username);
       if (username) {
         return await JoblyApi.getUser(username);
       }

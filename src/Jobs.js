@@ -13,7 +13,7 @@ const Jobs = () => {
     });
 
 
-    if (!checkAuth) {
+    if (!checkAuth()) {
         return (<Redirect to="/login" />);
     }
 

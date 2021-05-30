@@ -23,7 +23,7 @@ const Company = () => {
     }, [handle]);
 
 
-    if (!checkAuth) {
+    if (!checkAuth()) {
         return (<Redirect to="/login" />);
     }
 

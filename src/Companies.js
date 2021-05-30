@@ -12,7 +12,8 @@ const Companies = () => {
         minEmployees: "",
         maxEmployees: ""
     });
-    if (!checkAuth) {
+    if (!checkAuth()) {
+        console.log("redirect")
         return (<Redirect to="/login" />);
     }
     return (

@@ -24,7 +24,7 @@ const ProfileForm = () => {
     const [isLoading, setIsLoading] = useState(false);
 
 
-    if (!checkAuth) {
+    if (!checkAuth()) {
         return (<Redirect to="/login" />);
     }
 

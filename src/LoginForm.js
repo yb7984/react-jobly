@@ -36,7 +36,7 @@ const LoginForm = ({ login }) => {
 
         return (
             <div className="LoginForm d-flex flex-column justify-content-center">
-                <h1 className="text-center">Login</h1>
+                <h1 className="text-center">User Login</h1>
                 <p className="text-danger">{errorMsg}</p>
                 <form className="text-left " onSubmit={handleSubmit}>
                     <FormInput name="username"
